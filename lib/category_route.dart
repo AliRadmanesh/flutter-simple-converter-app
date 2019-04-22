@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hello_rectangle/category.dart';
+import 'package:hello_rectangle/unit.dart';
 
 final _backgroundColor = Colors.green[100];
 
@@ -57,6 +58,17 @@ class CategoryRoute extends StatelessWidget {
     );
   }
 
+  /// Returns a list of mock [Unit]s.
+  List<Unit> _retrieveUnitList(String categoryName) {
+    return List.generate(10, (int i) {
+      i += 1;
+      return Unit(
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final categories = <Category>[];
@@ -66,6 +78,7 @@ class CategoryRoute extends StatelessWidget {
         name: _categoryNames[i],
         color: _baseColors[i],
         iconLocation: _categoryIcons[i],
+        units: _retrieveUnitList(_categoryNames[i]),
       ));
     }
 

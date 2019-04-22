@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 // @required is defined in the meta.dart package
 import 'package:meta/meta.dart';
 
+import 'package:hello_rectangle/converter_route.dart';
+import 'package:hello_rectangle/unit.dart';
+
 final _rowHeight = 100.0;
 final _rowPadding = 8.0;
 final _iconPadding = 16.0;
@@ -15,6 +18,7 @@ class Category extends StatelessWidget {
   final String name;
   final ColorSwatch color;
   final IconData iconLocation;
+  final List<Unit> units;
 
   /// creates a [Category].
   /// A [Category] saves the name of the category (e.g. 'Length'), its color for
@@ -27,12 +31,39 @@ class Category extends StatelessWidget {
     @required this.name,
     @required this.color,
     @required this.iconLocation,
+    @required this.units,
   })  : assert(name != null),
         assert(color != null),
         assert(iconLocation != null),
+        assert(units != null),
         super(key: key);
 
+  /// Navigates to the [ConverterRoute].
+  void _navigateToConveter(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute<Null>(
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            elevation: 1.0,
+            centerTitle: true,
+            backgroundColor: color,
+            title: Text(
+              name,
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ),
+          body: ConverterRoute(
+            color: color,
+            name: name,
+            units: units,
+          ),
+        );
+      },
+    ));
+  }
+
   /// Builds a custom widget that shows [Category] information.
+  ///
   /// This information includes the icon, name, and color for the [Category].
   @override
   Widget build(BuildContext context) {
@@ -47,7 +78,7 @@ class Category extends StatelessWidget {
           // We can use either the `() => function()` or the ` () { function(); }`
           // syntax in onTap property.
           onTap: () {
-            print('I was tapped!');
+            _navigateToConveter(context);
           },
           child: Padding(
             padding: EdgeInsets.all(_rowPadding),
