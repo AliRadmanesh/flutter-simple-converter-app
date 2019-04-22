@@ -20,7 +20,7 @@ class Category extends StatelessWidget {
   /// A [Category] saves the name of the category (e.g. 'Length'), its color for
   /// the UI, and the icon that represents it (e.g. ruler).
   /// While the @required checks for whether a named parameter is passed in,
-  /// it doen't check whether the object passed in is null; We check that
+  /// it doesn't check whether the object passed in is null; We check that
   /// in the assert statement.
   const Category({
     Key key,
@@ -47,7 +47,7 @@ class Category extends StatelessWidget {
           // We can use either the `() => function()` or the ` () { function(); }`
           // syntax in onTap property.
           onTap: () {
-            print("I was tapped!");
+            print('I was tapped!');
           },
           child: Padding(
             padding: EdgeInsets.all(_rowPadding),

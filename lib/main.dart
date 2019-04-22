@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:hello_rectangle/category.dart';
 
-const _categoryName = 'Cake';
-const _categoryIcon = Icons.cake;
-const _categoryColor = Colors.green;
+import 'package:hello_rectangle/category_route.dart';
 
+/// The function that is called when main.dart is run.
 void main() {
   runApp(UnitConverterApp());
 }
 
+/// This widget is the root of our application.
+/// The first screen we see is a list [Categories].
 class UnitConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Hello Rectangle',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Rectangle'),
-        ),
-        body: Center(
-          child: Category(
-              name: _categoryName,
-              color: _categoryColor,
-              iconLocation: _categoryIcon),
-        ),
-      ),
+      title: 'Unit Converter',
+      home: CategoryRoute(),
     );
   }
 }
